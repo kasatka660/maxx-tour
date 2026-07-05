@@ -3,15 +3,24 @@
   font-size: 1.1rem;
 }
 
+/* Mobile-first base: cards sit in a single horizontal row that scrolls
+   left-to-right instead of stacking vertically. */
 .visas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* Vertical breathing room so card shadows/hover lift aren't clipped. */
+  padding-block: 0.5rem 1rem;
   gap: 1.5rem;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .visa-card {
+  flex: 0 0 auto;
+  width: 200px;
+  scroll-snap-align: start;
   background: var(--white);
   border: 1px solid #eee;
   border-radius: 16px;
@@ -35,7 +44,7 @@
 
 .visa-country {
   margin-top: 0.75rem;
-  font-size: 1.25rem;
+  font-size: 4cqw;
   font-weight: 600;
   color: var(--dark);
 }
@@ -53,21 +62,20 @@
   font-size: 0.95rem;
 }
 
-/* On small screens, lay the cards out in a single horizontal row that scrolls
-   left-to-right instead of stacking vertically. */
-@media (max-width: 767px) {
+/* From 768px up, arrange the cards in a wrapping grid instead of a scroller. */
+@media (min-width: 768px) {
   .visas-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    /* Vertical breathing room so card shadows/hover lift aren't clipped. */
-    padding-block: 0.5rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    overflow-x: visible;
+    padding-block: 0;
   }
 
   .visa-card {
-    flex: 0 0 auto;
-    width: 200px;
-    scroll-snap-align: start;
+    width: auto;
+  }
+
+  .visa-country {
+    font-size: 2cqw;
   }
 }
