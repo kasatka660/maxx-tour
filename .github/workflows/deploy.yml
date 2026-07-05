@@ -24,8 +24,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+
+      # Provisions/enables the Pages site for this repo. Avoids the
+      # "Deployment failed, try again later." error when Pages isn't fully set up.
+      - uses: actions/configure-pages@v5
 
       - run: npm ci
 
