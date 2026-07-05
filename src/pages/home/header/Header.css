@@ -1,0 +1,124 @@
+/* Display is controlled by Tailwind utilities (hidden / md:flex); keep only
+   the gap here so it doesn't fight the utilities' specificity. */
+.header-nav {
+  gap: 1.5rem;
+}
+
+.header-link {
+  color: var(--white);
+  position: relative;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.header-link::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--red);
+  content: "";
+  width: 0;
+}
+
+.header-link:hover::after {
+  width: 100%;
+  transition: width 0.3s ease;
+}
+
+.lang-toggle {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  transition: all var(--transition);
+}
+
+.lang-toggle-btn {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+
+.lang-toggle-btn--active {
+  background-color: var(--red);
+  border-radius: 50px;
+}
+
+.scrolled-header {
+  .header-link {
+    color: var(--black);
+  }
+  .hamburger span {
+    background-color: var(--black);
+  }
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 0.3s ease,
+    backdrop-filter 0.3s ease;
+}
+
+/* Hamburger button — three bars that morph into an X when open. */
+.hamburger {
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--white);
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile dropdown panel — full window width, collapsed by default, drops
+   down when open. Frosted translucent background rather than solid white. */
+.mobile-nav {
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 2rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    padding 0.3s ease;
+}
+
+.mobile-nav.open {
+  max-height: 20rem;
+  opacity: 1;
+  padding: 1rem 2rem;
+}
+
+/* Translucent dark panel, so its links stay white regardless of scroll state. */
+.mobile-nav .header-link {
+  color: var(--white);
+  font-size: 1.1rem;
+}

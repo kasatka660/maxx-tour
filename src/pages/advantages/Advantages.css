@@ -1,0 +1,52 @@
+.advantages-container {
+  background: var(--gray-light);
+}
+
+.advantages-header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.advantage-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.advantage-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(227, 6, 19, 0.15);
+}
+
+.advantage-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  color: var(--red);
+}
+
+.advantage-title {
+  margin-top: 0.75rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.advantage-text {
+  margin-top: 0.5rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}

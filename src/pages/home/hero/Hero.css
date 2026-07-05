@@ -1,0 +1,82 @@
+.hero {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../../assets/images/home-bg.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 46, 0.75) 0%,
+    rgba(227, 6, 19, 0.3) 100%
+  );
+
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin-bottom: 30px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  padding: 16px 44px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--red);    
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-cta:active {
+  transform: translateY(0);
+}
+
+/* background-attachment: fixed is janky/unsupported on most mobile browsers
+   (notably iOS Safari) — fall back to a normally-scrolling background. */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 100svh;
+    padding: 30px 20px;
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta {
+    width: 100%;
+    padding: 14px 24px;
+  }
+}

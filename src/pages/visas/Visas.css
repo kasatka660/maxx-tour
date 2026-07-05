@@ -1,0 +1,73 @@
+.visas-header p {
+  color: var(--gray);
+  font-size: 1.1rem;
+}
+
+.visas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.visa-card {
+  background: var(--white);
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.visa-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(227, 6, 19, 0.15);
+}
+
+.visa-flag {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.visa-country {
+  margin-top: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.visa-price {
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.visa-term {
+  margin-top: 0.25rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+/* On small screens, lay the cards out in a single horizontal row that scrolls
+   left-to-right instead of stacking vertically. */
+@media (max-width: 767px) {
+  .visas-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* Vertical breathing room so card shadows/hover lift aren't clipped. */
+    padding-block: 0.5rem 1rem;
+  }
+
+  .visa-card {
+    flex: 0 0 auto;
+    width: 200px;
+    scroll-snap-align: start;
+  }
+}

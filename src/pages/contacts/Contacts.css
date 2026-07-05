@@ -1,0 +1,31 @@
+.contacts-container {
+  background-color: #f9f9f9;
+}
+
+.messenger-btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+}
+
+.messenger-btn--instagram {
+  background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+}
+
+.messenger-btn--telegram {
+  background-color: var(--blue);
+}
+
+.messenger-btn--viber {
+  background-color: var(--purple);
+}
