@@ -1,0 +1,71 @@
+.visa-card {
+  flex: 0 0 auto;
+  width: 200px;
+  cursor: pointer;
+  scroll-snap-align: start;
+  background: var(--white);
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.visa-card:hover {
+  box-shadow: 0 12px 32px rgba(227, 6, 19, 0.15);
+}
+
+.visa-flag {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.visa-country {
+  margin-top: 0.75rem;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.visa-price {
+  margin-top: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.visa-term {
+  margin-top: 0.25rem;
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.visa-more {
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--red);
+  background: transparent;
+  border: 1px solid var(--red);
+  border-radius: 30px;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.visa-more:hover {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* From 768px up, cards size to the grid track instead of a fixed width. */
+@media (min-width: 768px) {
+  .visa-card {
+    width: auto;
+  }
+}

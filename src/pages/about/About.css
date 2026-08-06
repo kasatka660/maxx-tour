@@ -1,6 +1,11 @@
+.container-wrapper {
+  background: var(--gray-light);
+}
+
 .about-text {
   font-size: 1.125rem;
   line-height: 1.8;
+  text-align: justify;
 }
 
 .about-section {

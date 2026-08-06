@@ -31,19 +31,17 @@ const advantages: Advantage[] = [
 const Advantages: React.FC = () => {
   return (
     <section className="advantages-container" id="advantages">
-      <div className="container container-padded">
-        <div className="advantages-header items-center text-center mb-12">
-          <h2>Почему выбирают нас</h2>
-        </div>
-
-        <div className="advantages-grid">
+      <div className="container">
+        <div className="advantages-card">
           {advantages.map((item) => (
-            <div className="advantage-card" key={item.title}>
+            <div className="advantage-item" key={item.title}>
               <span className="advantage-icon" aria-hidden="true">
                 <FontAwesomeIcon icon={item.icon} />
               </span>
-              <h3 className="advantage-title">{item.title}</h3>
-              <p className="advantage-text">{item.text}</p>
+              <div className="advantage-body">
+                <h3 className="advantage-title">{item.title}</h3>
+                <p className="advantage-text">{item.text}</p>
+              </div>
             </div>
           ))}
         </div>

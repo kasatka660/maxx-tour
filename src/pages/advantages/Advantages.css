@@ -1,52 +1,58 @@
-.advantages-container {
-  background: var(--gray-light);
-}
-
-.advantages-header p {
-  color: var(--gray);
-  font-size: 1.1rem;
-}
-
-.advantages-grid {
+/* Pull the card up so it overlaps the bottom of the hero, as in the design. */
+.advantages-card {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: -80px auto 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.advantage-card {
+  grid-template-columns: 1fr;
   background: var(--white);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.advantage-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(227, 6, 19, 0.15);
+.advantage-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem;
+}
+
+/* Mobile: stacked with horizontal dividers between items. */
+.advantage-item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .advantage-icon {
-  font-size: 2.25rem;
+  flex-shrink: 0;
+  font-size: 2rem;
   line-height: 1;
   color: var(--red);
 }
 
 .advantage-title {
-  margin-top: 0.75rem;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--dark);
+  line-height: 1.2;
 }
 
 .advantage-text {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
   color: var(--gray);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Desktop: single row of 4, split by vertical dividers. */
+@media (min-width: 768px) {
+  .advantages-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .advantage-item:not(:last-child) {
+    border-bottom: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
 }

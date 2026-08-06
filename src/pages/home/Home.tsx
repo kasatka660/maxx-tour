@@ -5,14 +5,17 @@ import Contacts from "../contacts/Contacts";
 import About from "../about/About";
 import Advantages from "../advantages/Advantages";
 import Visas from "../visas/Visas";
+import Tours from "../tours/Tours";
 
 const Home: React.FC = () => {
   return (
     <div>
       <Hero></Hero>
-      <About></About>
       <Advantages></Advantages>
       <Visas></Visas>
+
+      <About></About>
+      {/* <Tours></Tours> */}
       <Contacts></Contacts>
     </div>
   );
