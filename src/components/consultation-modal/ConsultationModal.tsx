@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./GetConsultationModal.css";
+import "./ConsultationModal.css";
 
-interface GetConsultationModalProps {
+interface ConsultationModalProps {
   onClose: () => void;
 }
 
-const GetConsultationModal: React.FC<GetConsultationModalProps> = ({
+const ConsultationModal: React.FC<ConsultationModalProps> = ({
   onClose,
 }) => {
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ const GetConsultationModal: React.FC<GetConsultationModalProps> = ({
     };
   }, [onClose]);
 
-  const handleSubmit = (e: SubmitEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // TODO: отправить заявку на backend / в мессенджер.
     console.log("Consultation request:", { name, phone, comment });
@@ -122,4 +122,4 @@ const GetConsultationModal: React.FC<GetConsultationModalProps> = ({
   );
 };
 
-export default GetConsultationModal;
+export default ConsultationModal;

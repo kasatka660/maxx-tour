@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState } from "react";
-import GetConsultationModal from "../../components/get-consultation-modal/GetConsultationModal";
+import ConsultationModal from "../../components/consultation-modal/ConsultationModal";
 
 interface ConsultationModalContextValue {
   isOpen: boolean;
@@ -30,7 +30,7 @@ export const ConsultationModalProvider: React.FC<{
   return (
     <ConsultationModalContext.Provider value={{ isOpen, open, close }}>
       {children}
-      {isOpen && <GetConsultationModal onClose={close} />}
+      {isOpen && <ConsultationModal onClose={close} />}
     </ConsultationModalContext.Provider>
   );
 };

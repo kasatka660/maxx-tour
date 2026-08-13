@@ -12,37 +12,11 @@
   overflow: hidden;
 }
 
-.advantage-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 1.75rem;
-}
-
-/* Mobile: stacked with horizontal dividers between items. */
+/* Mobile: stacked with horizontal dividers between items.
+   Item-scoped styling (.advantage-item base, icon, title, text) lives in
+   the AdvantageItem component's CSS; these sibling/grid rules are layout. */
 .advantage-item:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.advantage-icon {
-  flex-shrink: 0;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--red);
-}
-
-.advantage-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--dark);
-  line-height: 1.2;
-}
-
-.advantage-text {
-  margin-top: 0.35rem;
-  color: var(--gray);
-  font-size: 0.9rem;
-  line-height: 1.4;
 }
 
 /* Desktop: single row of 4, split by vertical dividers. */

@@ -1,0 +1,26 @@
+/* Base nav link with an animated red underline on hover. Contextual colour
+   overrides live where the context does: .scrolled-header in Header.css and
+   .mobile-nav in MobileNav.css. */
+.header-link {
+  color: var(--dark);
+  position: relative;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.header-link::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--red);
+  content: "";
+  width: 0;
+}
+
+.header-link:hover::after {
+  width: 100%;
+  transition: width 0.3s ease;
+}

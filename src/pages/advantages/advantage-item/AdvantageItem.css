@@ -1,0 +1,27 @@
+.advantage-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.75rem;
+}
+
+.advantage-icon {
+  flex-shrink: 0;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--red);
+}
+
+.advantage-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.advantage-text {
+  margin-top: 0.35rem;
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}

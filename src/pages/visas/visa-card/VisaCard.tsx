@@ -15,6 +15,8 @@ export interface VisaDetails {
 }
 
 export interface Visa {
+  // Stable English identifier, used as the React list key.
+  id: string;
   country: string;
   flag: string;
   price: string;
@@ -22,7 +24,14 @@ export interface Visa {
   details?: VisaDetails;
 }
 
-const VisaCard: React.FC<Visa> = ({ country, flag, price, term, details }) => {
+const VisaCard: React.FC<Visa> = ({
+  id,
+  country,
+  flag,
+  price,
+  term,
+  details,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -54,7 +63,7 @@ const VisaCard: React.FC<Visa> = ({ country, flag, price, term, details }) => {
 
       {isModalOpen && (
         <VisaModal
-          visa={{ country, flag, price, term, details }}
+          visa={{ id, country, flag, price, term, details }}
           onClose={() => setIsModalOpen(false)}
         />
       )}

@@ -17,7 +17,7 @@ const Visas: React.FC = () => {
 
         <div className="visas-grid">
           {visas.map((visa) => (
-            <VisaCard key={visa.country} {...visa} />
+            <VisaCard key={visa.id} {...visa} />
           ))}
         </div>
       </div>

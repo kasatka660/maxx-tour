@@ -5,6 +5,7 @@ import type { Visa } from "./visa-card/VisaCard";
 // поступления данных (города подачи, ссылки, сборы и т.д.).
 export const visas: Visa[] = [
   {
+    id: "germany",
     country: "Германия",
     flag: "🇩🇪",
     price: "350 руб",
@@ -24,6 +25,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "france",
     country: "Франция",
     flag: "🇫🇷",
     price: "300 руб",
@@ -43,6 +45,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "greece",
     country: "Греция",
     flag: "🇬🇷",
     price: "250 руб",
@@ -62,6 +65,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "italy",
     country: "Италия",
     flag: "🇮🇹",
     price: "300 руб",
@@ -81,6 +85,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "spain",
     country: "Испания",
     flag: "🇪🇸",
     price: "350 руб",
@@ -100,6 +105,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "poland",
     country: "Польша",
     flag: "🇵🇱",
     price: "250 руб",
@@ -119,6 +125,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "usa",
     country: "США",
     flag: "🇺🇸",
     price: "500 руб",
@@ -138,6 +145,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "uk",
     country: "Великобритания",
     flag: "🇬🇧",
     price: "500 руб",
@@ -157,6 +165,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "bulgaria",
     country: "Болгария",
     flag: "🇧🇬",
     price: "250 руб",
@@ -176,6 +185,7 @@ export const visas: Visa[] = [
     },
   },
   {
+    id: "hungary",
     country: "Венгрия",
     flag: "🇭🇺",
     price: "300 руб",
