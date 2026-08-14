@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import "../../../components/modal/modal.css";
 import "./VisaModal.css";
 import type { Visa } from "../visa-card/VisaCard";
 import { ConsultationModalContext } from "../../../utils/context/consultation-modal";
@@ -25,16 +26,16 @@ const VisaModal: React.FC<VisaModalProps> = ({ visa, onClose }) => {
 
   return (
     <div
-      className="visa-modal-overlay"
+      className="modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={`Виза — ${visa.country}`}
     >
-      <div className="visa-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal visa-modal" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
-          className="visa-modal-close"
+          className="modal-close"
           onClick={onClose}
           aria-label="Закрыть"
         >
@@ -122,7 +123,7 @@ const VisaModal: React.FC<VisaModalProps> = ({ visa, onClose }) => {
 
         <button
           type="button"
-          className="visa-modal-cta"
+          className="modal-cta visa-modal-cta"
           onClick={modalContext.open}
         >
           Оставить заявку

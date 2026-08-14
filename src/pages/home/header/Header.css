@@ -2,22 +2,6 @@
    topbar/Topbar.css, and the mobile menu in mobile-nav/MobileNav.css. The
    .scrolled-header block below still tweaks those global classes on scroll. */
 
-.lang-toggle {
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  transition: all var(--transition);
-}
-
-.lang-toggle-btn {
-  padding: 6px 14px;
-  font-size: 0.8rem;
-}
-
-.lang-toggle-btn--active {
-  background-color: var(--red);
-  border-radius: 50px;
-}
-
 .scrolled-header {
   .header-link {
     color: var(--black);

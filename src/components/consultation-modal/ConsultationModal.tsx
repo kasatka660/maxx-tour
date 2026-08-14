@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "../modal/modal.css";
 import "./ConsultationModal.css";
 
 interface ConsultationModalProps {
@@ -35,16 +36,16 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   return (
     <div
-      className="consult-modal-overlay"
+      className="modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Получить консультацию"
     >
-      <div className="consult-modal" onClick={(e) => e.stopPropagation()}>
+      <div className="modal consult-modal" onClick={(e) => e.stopPropagation()}>
         <button
           type="button"
-          className="consult-modal-close"
+          className="modal-close"
           onClick={onClose}
           aria-label="Закрыть"
         >
@@ -62,7 +63,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </p>
             <button
               type="button"
-              className="consult-modal-submit"
+              className="modal-cta consult-modal-submit"
               onClick={onClose}
             >
               Закрыть
@@ -111,7 +112,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 />
               </label>
 
-              <button type="submit" className="consult-modal-submit">
+              <button type="submit" className="modal-cta consult-modal-submit">
                 Отправить заявку
               </button>
             </form>

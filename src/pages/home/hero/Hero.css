@@ -59,7 +59,7 @@
   font-size: 1rem;
   font-weight: 600;
   background-color: var(--red);
-  color: white;
+  color: var(--white);
   border: none;
   border-radius: 30px;
   cursor: pointer;
