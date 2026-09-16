@@ -1,73 +1,75 @@
-# React + TypeScript + Vite
+# MaxxTour.by
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing site for MaxxTour.by, a family travel agency in Minsk. Built with
+Next.js (App Router), React 19, Tailwind CSS v4 and TypeScript.
 
-Currently, two official plugins are available:
+Every page is prerendered at build time. The only server-side code in the whole
+app is one route handler, `POST /api/consultation`, which forwards consultation
+requests to the agency's Telegram chat.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting started
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+nvm use                    # Node version is pinned in .nvmrc
+npm install
+cp .env.example .env.local # then fill in the Telegram values
+npm run dev                # http://localhost:3000
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The site renders fine without any environment variables — only the consultation
+form needs them, and it returns a clear "temporarily unavailable" message until
+they are set.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## The consultation form
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+`ConsultationModal` POSTs JSON to `/api/consultation`, which posts to the
+Telegram Bot API. Nothing is stored, and there is no database.
+
+To set it up:
+
+1. Message [@BotFather](https://t.me/BotFather), send `/newbot`, copy the token.
+2. Add the bot to the chat or group that should receive requests.
+3. Post a message in that chat, then open
+   `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy `result[].chat.id`
+   (group ids are negative).
+4. Put both into `.env.local`, and into your host's environment variables for
+   production.
+
+`TELEGRAM_BOT_TOKEN` must stay server-side — never rename it to
+`NEXT_PUBLIC_*`, or the token ships to the browser and anyone can post as
+your bot.
+
+The endpoint validates name/phone, drops submissions that trip a hidden honeypot
+field, escapes user text before handing it to Telegram's HTML parser, and
+best-effort rate-limits to 5 submissions per IP per 10 minutes.
+
+## Scripts
+
+| Script          | What it does                                                    |
+| --------------- | --------------------------------------------------------------- |
+| `npm run dev`   | Dev server with Fast Refresh.                                   |
+| `npm run build` | Production build. Type-checks too, so it is the type-check gate. |
+| `npm run start` | Serve the production build locally.                             |
+| `npm run lint`  | ESLint over the repo.                                           |
+
+There is no test runner configured.
+
+## Deployment
+
+The app needs a host that can run a Node.js function for `/api/consultation`;
+static-only hosting such as GitHub Pages will not work. Vercel, Netlify,
+Cloudflare (via `@opennextjs/cloudflare`) and any VPS running `next start` all
+work without code changes.
+
+Set `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` and `NEXT_PUBLIC_SITE_URL` in the
+host's environment. Deployment itself is handled by the host's Git integration;
+`.github/workflows/ci.yml` only lints and builds.
+
+## Layout
+
+- `src/app/` — routes, root layout and page metadata.
+- `src/app/api/consultation/` — the single server-side route handler.
+- `src/sections/` — the landing-page sections (hero, advantages, visas, about, contacts).
+- `src/components/` — shared UI (header, footer, modals, icons, map).
+- `src/assets/` — images imported as modules.
+- `src/styles/breakpoints.css` — `@custom-media` breakpoint definitions.

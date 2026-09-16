@@ -1,0 +1,32 @@
+/* Pull the card up so it overlaps the bottom of the hero, as in the design. */
+.advantages-card {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: -80px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Mobile: stacked with horizontal dividers between items.
+   Item-scoped styling (.advantage-item base, icon, title, text) lives in
+   the AdvantageItem component's CSS; these sibling/grid rules are layout. */
+.advantage-item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Desktop: single row of 4, split by vertical dividers. */
+@media (--md) {
+  .advantages-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .advantage-item:not(:last-child) {
+    border-bottom: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
+}

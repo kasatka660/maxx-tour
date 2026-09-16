@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useCallback, useState } from "react";
 import ConsultationModal from "../../components/consultation-modal/ConsultationModal";
 

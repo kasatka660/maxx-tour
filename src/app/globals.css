@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Utilities are used across everything under src/, not just this folder. */
+@source "../";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: var(--dark);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /** Colors */
+  --red: #e30613;
+  --red-dark: #c00510;
+  --yellow: #f5c518;
+  --dark: #333;
+  --dark-bg: #1a1a2e;
+  --black: #000;
+  --white: #fff;
+  --gray-light: #f7f7fa;
+  --gray: #888;
+  --blue: #0088cc;
+  --purple: #7360f2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Guard against stray horizontal scroll on small screens. */
+body {
+  overflow-x: hidden;
+}

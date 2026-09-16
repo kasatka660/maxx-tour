@@ -70,6 +70,37 @@
   margin-top: 0.5rem;
 }
 
+.consult-modal-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+  box-shadow: none;
+}
+
+.consult-modal-field input:disabled,
+.consult-modal-field textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.consult-modal-error {
+  color: var(--red);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Honeypot: removed from the visual and accessibility trees without
+   `display: none`, which some bots skip. */
+.consult-modal-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .consult-modal-success {
   display: flex;
   flex-direction: column;

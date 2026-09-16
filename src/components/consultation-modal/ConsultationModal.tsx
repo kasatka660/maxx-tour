@@ -1,18 +1,26 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import "../modal/modal.css";
 import "./ConsultationModal.css";
+import { sendConsultation } from "../../utils/api/send-consultation";
 
 interface ConsultationModalProps {
   onClose: () => void;
 }
 
-const ConsultationModal: React.FC<ConsultationModalProps> = ({
-  onClose,
-}) => {
+type Status = "idle" | "submitting" | "submitted";
+
+const ConsultationModal: React.FC<ConsultationModalProps> = ({ onClose }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  // Honeypot — hidden from humans, so anything here means a bot filled it in.
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  const isSubmitting = status === "submitting";
 
   // Close on Escape and lock background scroll while the modal is open.
   useEffect(() => {
@@ -27,11 +35,24 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
     };
   }, [onClose]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: отправить заявку на backend / в мессенджер.
-    console.log("Consultation request:", { name, phone, comment });
-    setSubmitted(true);
+    if (isSubmitting) return;
+
+    setStatus("submitting");
+    setError(null);
+    try {
+      await sendConsultation({ name, phone, comment, website });
+      setStatus("submitted");
+    } catch (e) {
+      console.log(e);
+      debugger;
+      const customError = e as Error;
+      customError.message
+        ? setError(customError.message)
+        : setError("Не удалось отправить заявку. Попробуйте ещё раз.");
+      setStatus("idle");
+    }
   };
 
   return (
@@ -52,7 +73,7 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
           ×
         </button>
 
-        {submitted ? (
+        {status === "submitted" ? (
           <div className="consult-modal-success">
             <span className="consult-modal-success-icon" aria-hidden="true">
               ✓
@@ -85,7 +106,8 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Ваше имя"
-                  required
+                  maxLength={100}
+                  disabled={isSubmitting}
                 />
               </label>
 
@@ -97,6 +119,8 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+375 (__) ___-__-__"
+                  maxLength={40}
+                  disabled={isSubmitting}
                   required
                 />
               </label>
@@ -108,12 +132,37 @@ const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
                   placeholder="Куда хотите поехать?"
+                  maxLength={2000}
+                  disabled={isSubmitting}
                   rows={3}
                 />
               </label>
 
-              <button type="submit" className="modal-cta consult-modal-submit">
-                Отправить заявку
+              {/* Honeypot. Hidden from people and from assistive tech, but a
+                  bot filling every field will trip it. */}
+              <input
+                type="text"
+                name="website"
+                className="consult-modal-honeypot"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
+              {error && (
+                <p className="consult-modal-error" role="alert">
+                  {error}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="modal-cta consult-modal-submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Отправляем…" : "Отправить заявку"}
               </button>
             </form>
           </>
