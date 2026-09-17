@@ -1,0 +1,25 @@
+# Netlify deploy config.
+#
+# The site is almost entirely static: `next build` prerenders every page, and
+# the only server code is the `POST /api/consultation` route handler. The
+# Next.js runtime plugin below is what turns that one route into a Netlify
+# Function — without it the endpoint 404s and the consultation form breaks,
+# even though the rest of the site would still render.
+#
+# Netlify reads the Node version from `.nvmrc`, so it is not repeated here.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Netlify auto-installs its Next.js runtime when it detects Next, but naming it
+# explicitly keeps the dependency visible in the repo rather than implicit in
+# the dashboard. Netlify resolves it from the plugin registry at build time; it
+# does not need to be in package.json.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Telegram credentials (TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID) are set in the
+# Netlify UI, never here — this file is committed. They are read at request
+# time, not during the build, so the build succeeds without them; the route
+# degrades to a 503 until they are present.
